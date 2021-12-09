@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public final class Checker {
 
-    private Checker() {
+    public Checker() {
         //constructor for checkstyle
     }
     /**
@@ -110,5 +110,15 @@ public final class Checker {
     private static int getScoreForTest(final Integer testNumber) {
         return (testNumber >= 1 && testNumber <= Constants.TESTS_NUMBER_SMALL)
                 ? Constants.SMALL_TEST_POINTS : Constants.BIG_TEST_POINTS;
+    }
+
+    public void deleteFiles(final File[] directory) {
+        if (directory != null) {
+            for (File file : directory) {
+                if (!file.delete()) {
+                    System.out.println("nu s-a sters");
+                }
+            }
+        }
     }
 }

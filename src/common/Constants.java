@@ -34,6 +34,7 @@ public final class Constants {
     public static final String NEW_CHILDREN = "newChildren";
     public static final String CHILDREN_UPDATES = "childrenUpdates";
     public static final String AGE = "age";
+    public static final String OUT_FILE = "out.txt";
     private Constants() {
         //constructor for checkstyle
     }

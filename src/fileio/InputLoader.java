@@ -51,10 +51,9 @@ public class InputLoader {
 
       santaBudget = Double.valueOf((Long) jsonObject.get(Constants.SANTA_BUDGET));
 
-
       JSONObject jsonInitialData = (JSONObject) jsonObject.get(Constants.INITIAL_DATA);
       JSONArray jsonChildArray = (JSONArray) jsonInitialData.get(Constants.CHILDREN);
-      JSONArray jsonSantaGiftList = (JSONArray) jsonInitialData.get(Constants.CHILDREN);
+      JSONArray jsonSantaGiftList = (JSONArray) jsonInitialData.get(Constants.SANTA_GIFTS_LIST);
 
       if (jsonChildArray != null) {
         for (Object jsonChild : jsonChildArray) {
@@ -85,10 +84,12 @@ public class InputLoader {
                 .add(
                     new Gift(
                         ((String) ((JSONObject) jsonGift).get(Constants.PRODUCT_NAME)),
-                        Double.valueOf((Long) jsonObject.get(Constants.PRICE)),
+                        Double.valueOf(
+                            (Long) ((JSONObject) jsonGift).get(Constants.PRICE)),
+                        // Double.valueOf((Long) jsonObject.get(Constants.PRICE)),
                         ((String) ((JSONObject) jsonGift).get(Constants.CATEGORY))));
           } catch (NullPointerException ignored) {
-            ;
+            System.out.println("NU EXISTA gifts");
           }
         }
       } else {
@@ -99,7 +100,9 @@ public class InputLoader {
       if (jsonAnnualChanges != null) {
         for (Object jsonAnnual : jsonAnnualChanges) {
 
-          Double newBudget = Double.valueOf((Long) jsonObject.get(Constants.SANTA_BUDGET));
+          // Double newBudget = Double.valueOf((Long) jsonObject.get(Constants.NEW_SANTA_BUDGET));
+          Double newBudget =
+              Double.valueOf((Long) ((JSONObject) jsonAnnual).get(Constants.NEW_SANTA_BUDGET));
           JSONArray annGifts = (JSONArray) ((JSONObject) jsonAnnual).get(Constants.NEW_GIFTS);
           JSONArray annChildren = (JSONArray) ((JSONObject) jsonAnnual).get(Constants.NEW_CHILDREN);
           JSONArray annChildUpdate =
@@ -111,7 +114,8 @@ public class InputLoader {
                 newGifts.add(
                     new Gift(
                         ((String) ((JSONObject) gifts).get(Constants.PRODUCT_NAME)),
-                        Double.valueOf((Long) jsonObject.get(Constants.PRICE)),
+                            Double.valueOf(
+                                    (Long) ((JSONObject) gifts).get(Constants.PRICE)),
                         ((String) ((JSONObject) gifts).get(Constants.CATEGORY))));
               } catch (NullPointerException ignored) {
                 ;

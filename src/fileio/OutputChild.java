@@ -16,9 +16,9 @@ public class OutputChild {
     private String firstName;
     private Cities city;
     private int age;
-    private ArrayList<String> giftsPreferences;
+    private ArrayList<String> giftsPreferences = new ArrayList<>();
     private Double averageScore;
-    private ArrayList<Double> niceScoreHistory;
+    private ArrayList<Double> niceScoreHistory = new ArrayList<>();
     private Double assignedBudget;
-    private ArrayList<Double> receivedGifts;
+    private ArrayList<Double> receivedGifts = new ArrayList<>();
 }

@@ -3,8 +3,17 @@ package main;
 import checker.Checker;
 import common.Constants;
 import data.ActionData;
+import entities.Child;
+import fileio.AnnualOutput;
 import fileio.InputLoader;
+import fileio.Output;
+import fileio.OutputChild;
+import fileio.Writer;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,7 +37,6 @@ public final class Main {
     public static void main(final String[] args) throws IOException {
         File directory = new File(Constants.TESTS_PATH);
         Path path = Paths.get(Constants.OUTPUT_DIR);
-
         if (!Files.exists(path)) {
             Files.createDirectories(path);
         }
@@ -68,10 +76,45 @@ public final class Main {
     public static void action(final String filePath1, final String filePath2) throws IOException {
         InputLoader inputLoader = new InputLoader(filePath1);
         ActionData input = inputLoader.readData();
+        FileWriter fileWriter = new FileWriter(filePath2);
 
+//        JSONArray annualChild = new JSONArray();
+//
+//        Output out = new Output();
+//        AnnualOutput anOut = new AnnualOutput();
+//
+//        for(Child ch : input.getInitialData().getChildren()){
+//            anOut.getAnnualChilds().add(ch);
+//        }
+//        Child ch2 = new Child();
+//        anOut.getAnnualChilds().add(ch2);
+//        out.getOutputList().add(anOut);
+//
+//        /// PRINT
+//
+//        for(AnnualOutput an : out.getOutputList()){
+//            JSONObject jsonObject = new JSONObject();
+//            JSONArray children = new JSONArray();
+//            children.add(an.getAnnualChilds());
+//            jsonObject.put("children", children);
+//            annualChild.add(children);
+//        }
+//
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("annualChildren", annualChild);
+//
+//        fileWriter.write(jsonObject.toJSONString());
+//        fileWriter.flush();
+//        fileWriter.close();
 
         // TODO add here the entry point to your implementation
-        printInput(input, filePath1);
+
+        //printInput(input, filePath1);
+
+        ProcessInput processInput = new ProcessInput();
+
+        processInput.init(input);
+
         System.out.println();
         System.out.println();
     }

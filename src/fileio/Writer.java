@@ -1,5 +1,6 @@
 package fileio;
 
+import com.fasterxml.jackson.databind.ObjectWriter;
 import common.Constants;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -30,7 +31,7 @@ public final class Writer {
      */
     public JSONObject writeFile(final Output output) throws IOException {
         JSONObject object = new JSONObject();
-        //object.put(output);
+         // Print it with specified indentation
         return object;
     }
 

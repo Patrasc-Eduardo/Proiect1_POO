@@ -1,5 +1,7 @@
-package DesignPatterns;
+package designpatterns.strategy;
 
 public interface AverageScoreStrategy {
+    /**
+     */
     void calculateAvgScore();
 }

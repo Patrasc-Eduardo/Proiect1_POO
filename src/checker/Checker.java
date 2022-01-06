@@ -112,6 +112,9 @@ public final class Checker {
                 ? Constants.SMALL_TEST_POINTS : Constants.BIG_TEST_POINTS;
     }
 
+    /**
+     * @param directory
+     */
     public void deleteFiles(final File[] directory) {
         if (directory != null) {
             for (File file : directory) {

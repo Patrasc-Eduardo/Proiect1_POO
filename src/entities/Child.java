@@ -1,9 +1,8 @@
 package entities;
 
-import DesignPatterns.AverageScoreStrategy;
+import designpatterns.strategy.AverageScoreStrategy;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
-
 
 public class Child implements AverageScoreStrategy {
   private int id;
@@ -12,12 +11,11 @@ public class Child implements AverageScoreStrategy {
   private String city;
   private int age;
   private ArrayList<String> giftsPreferences;
-  private Double averageScore;//
-  private ArrayList<Double> niceScoreHistory = new ArrayList<>();//
-  @JsonIgnore
-  private Double niceScore;
-  private Double assignedBudget;//
-  private ArrayList<Gift> receivedGifts = new ArrayList<>();//
+  private Double averageScore;
+  private ArrayList<Double> niceScoreHistory = new ArrayList<>();
+  @JsonIgnore private Double niceScore;
+  private Double assignedBudget;
+  private ArrayList<Gift> receivedGifts = new ArrayList<>();
 
   public Child(
       final int id,
@@ -26,8 +24,7 @@ public class Child implements AverageScoreStrategy {
       final int age,
       final String city,
       final Double niceScore,
-      final ArrayList<String> giftsPreferences
-      ) {
+      final ArrayList<String> giftsPreferences) {
     this.id = id;
     this.age = age;
     this.city = city;
@@ -39,17 +36,17 @@ public class Child implements AverageScoreStrategy {
   }
 
   public Child(
-          final int id,
-          final String lastName,
-          final String firstName,
-          final int age,
-          final String city,
-          final Double niceScore,
-          final ArrayList<String> giftsPreferences,
-          final Double averageScore,
-          final ArrayList<Double> niceScoreHistory,
-          final Double assignedBudget,
-          final ArrayList<Gift> receivedGifts) {
+      final int id,
+      final String lastName,
+      final String firstName,
+      final int age,
+      final String city,
+      final Double niceScore,
+      final ArrayList<String> giftsPreferences,
+      final Double averageScore,
+      final ArrayList<Double> niceScoreHistory,
+      final Double assignedBudget,
+      final ArrayList<Gift> receivedGifts) {
     this.id = id;
     this.age = age;
     this.city = city;
@@ -64,174 +61,153 @@ public class Child implements AverageScoreStrategy {
     this.receivedGifts = receivedGifts;
   }
 
-  public Child(Child child){
-        this.id = child.id;
-        this.age = child.age;
-        this.lastName = child.lastName;
-        this.city = child.city;
-        this.firstName = child.firstName;
-        this.niceScore = child.niceScore;
-        //this.giftsPreferences = child.giftsPreferences;
-        this.giftsPreferences = new ArrayList<>(child.getGiftsPreferences());
-        //this.niceScoreHistory = child.niceScoreHistory;
-        this.niceScoreHistory = new ArrayList<>(child.getNiceScoreHistory());
-        this.averageScore = child.averageScore;
-        this.assignedBudget = child.assignedBudget;
-        //this.receivedGifts = child.receivedGifts;
-        this.receivedGifts = new ArrayList<>(child.getReceivedGifts());
+  public Child(final Child child) {
+    this.id = child.id;
+    this.age = child.age;
+    this.lastName = child.lastName;
+    this.city = child.city;
+    this.firstName = child.firstName;
+    this.niceScore = child.niceScore;
+    this.giftsPreferences = new ArrayList<>(child.getGiftsPreferences());
+    this.niceScoreHistory = new ArrayList<>(child.getNiceScoreHistory());
+    this.averageScore = child.averageScore;
+    this.assignedBudget = child.assignedBudget;
+
+    this.receivedGifts = new ArrayList<>(child.getReceivedGifts());
   }
 
-    public Child() {
+  public Child() { }
 
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public ArrayList<String> getGiftsPreferences() {
-        return giftsPreferences;
-    }
-
-    public void setGiftsPreferences(ArrayList<String> giftsPreferences) {
-        this.giftsPreferences = giftsPreferences;
-    }
-
-    public Double getAverageScore() {
-        return averageScore;
-    }
-
-    public void setAverageScore(Double averageScore) {
-        this.averageScore = averageScore;
-    }
-
-    public ArrayList<Double> getNiceScoreHistory() {
-        return niceScoreHistory;
-    }
-
-    public void setNiceScoreHistory(ArrayList<Double> niceScoreHistory) {
-        this.niceScoreHistory = niceScoreHistory;
-    }
-
-    public Double getNiceScore() {
-        return niceScore;
-    }
-
-    public void setNiceScore(Double niceScore) {
-        this.niceScore = niceScore;
-    }
-
-    public Double getAssignedBudget() {
-        return assignedBudget;
-    }
-
-    public void setAssignedBudget(Double assignedBudget) {
-        this.assignedBudget = assignedBudget;
-    }
-
-    public ArrayList<Gift> getReceivedGifts() {
-        return receivedGifts;
-    }
-
-    public void setReceivedGifts(ArrayList<Gift> receivedGifts) {
-        this.receivedGifts = receivedGifts;
-    }
-
-    public void calculateAssignedBudget(Double budgetUnit){
-    if (averageScore != null && budgetUnit != null){
-     assignedBudget = averageScore * budgetUnit;
-        //assignedBudget = BigDecimal.valueOf(averageScore).multiply(BigDecimal.valueOf(budgetUnit));
-    }
-    //return this.assignedBudget;
+  public final int getId() {
+    return id;
   }
 
-//  @Override
-//  public String toString() {
-//    return "Child{"
-//        + "\n"
-//        + "id="
-//        + id
-//        + "\n"
-//        + ", lastName='"
-//        + lastName
-//        + '\''
-//        + "\n"
-//        + ", firstName='"
-//        + firstName
-//        + '\''
-//        + "\n"
-//        + ", age="
-//        + age
-//        + "\n"
-//        + ", city='"
-//        + city
-//        + '\''
-//        + "\n"
-//        + ", niceScore="
-//        + niceScore
-//        + "\n"
-//        + ", giftsPreferences="
-//        + giftsPreferences
-//        + "\n"
-//        + '}';
-//  }
+  public final void setId(final int id) {
+    this.id = id;
+  }
 
+  public final String getLastName() {
+    return lastName;
+  }
+
+  public final void setLastName(final String lastName) {
+    this.lastName = lastName;
+  }
+
+  public final String getFirstName() {
+    return firstName;
+  }
+
+  public final void setFirstName(final String firstName) {
+    this.firstName = firstName;
+  }
+
+  public final String getCity() {
+    return city;
+  }
+
+  public final void setCity(final String city) {
+    this.city = city;
+  }
+
+  public final int getAge() {
+    return age;
+  }
+
+  public final void setAge(final int age) {
+    this.age = age;
+  }
+
+  public final ArrayList<String> getGiftsPreferences() {
+    return giftsPreferences;
+  }
+
+  public final void setGiftsPreferences(final ArrayList<String> giftsPreferences) {
+    this.giftsPreferences = giftsPreferences;
+  }
+
+  public final Double getAverageScore() {
+    return averageScore;
+  }
+
+  public final void setAverageScore(final Double averageScore) {
+    this.averageScore = averageScore;
+  }
+
+  public final ArrayList<Double> getNiceScoreHistory() {
+    return niceScoreHistory;
+  }
+
+  public final void setNiceScoreHistory(final ArrayList<Double> niceScoreHistory) {
+    this.niceScoreHistory = niceScoreHistory;
+  }
+
+  public final Double getNiceScore() {
+    return niceScore;
+  }
+
+  public final void setNiceScore(final Double niceScore) {
+    this.niceScore = niceScore;
+  }
+
+  public final Double getAssignedBudget() {
+    return assignedBudget;
+  }
+
+  public final void setAssignedBudget(final Double assignedBudget) {
+    this.assignedBudget = assignedBudget;
+  }
+
+  public final ArrayList<Gift> getReceivedGifts() {
+    return receivedGifts;
+  }
+
+  public final void setReceivedGifts(final ArrayList<Gift> receivedGifts) {
+    this.receivedGifts = receivedGifts;
+  }
+
+  /**
+   * @param budgetUnit
+   */
+  public void calculateAssignedBudget(final Double budgetUnit) {
+    if (averageScore != null && budgetUnit != null) {
+      assignedBudget = averageScore * budgetUnit;
+    }
+  }
 
   @Override
-  public String toString() {
-    return "Child{" +
-            "id=" + id +
-            ", lastName='" + lastName + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", city='" + city + '\'' +
-            ", age=" + age +
-            ", niceScore=" + niceScore +
-            ", giftsPreferences=" + giftsPreferences +
-            ", averageScore=" + averageScore +
-            ", niceScoreHistory=" + niceScoreHistory +
-            ", assignedBudget=" + assignedBudget +
-            ", receivedGifts=" + receivedGifts +
-            '}';
+  public final String toString() {
+    return "Child{"
+        + "id="
+        + id
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", firstName='"
+        + firstName
+        + '\''
+        + ", city='"
+        + city
+        + '\''
+        + ", age="
+        + age
+        + ", niceScore="
+        + niceScore
+        + ", giftsPreferences="
+        + giftsPreferences
+        + ", averageScore="
+        + averageScore
+        + ", niceScoreHistory="
+        + niceScoreHistory
+        + ", assignedBudget="
+        + assignedBudget
+        + ", receivedGifts="
+        + receivedGifts
+        + '}';
   }
 
   @Override
   public void calculateAvgScore() {
-    //return averageScore;
+
   }
 }

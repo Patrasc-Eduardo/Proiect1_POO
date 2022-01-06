@@ -3,93 +3,79 @@ package entities;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Santa {
-    private Double santaBudget;
-    private ArrayList<Gift> santaGiftList;
-    private Double budgetUnit;
+public final class Santa {
+  private Double santaBudget;
+  private ArrayList<Gift> santaGiftList;
+  private Double budgetUnit;
 
-    public Santa(){
+  public Santa() { }
 
-    }
+  public Santa(final Double santaBudget, final ArrayList<Gift> santaGiftList) {
+    this.santaBudget = santaBudget;
+    this.santaGiftList = santaGiftList;
+    this.budgetUnit = 0.0;
+  }
 
-    public Santa(Double santaBudget, ArrayList<Gift> santaGiftList){
-        this.santaBudget = santaBudget;
-        this.santaGiftList = santaGiftList;
-        this.budgetUnit = 0.0;
-    }
+  /**
+   * @param allChildAvg
+   * @return
+   */
+  public Double calculateBudgetUnit(final ArrayList<Double> allChildAvg) {
 
-//    public Double calculateBudgetUnit(Double[] allChildAvg){
-//
-//        if (Double.compare(santaBudget, 0.0) != 0){
-//            Double sum = Arrays.stream(allChildAvg).mapToDouble(Double::doubleValue).sum();
-//            budgetUnit = santaBudget / sum;
-//            return budgetUnit;
-//        }
-//
-//        return 0.0;
-//    }
+    if (Double.compare(santaBudget, 0.0) != 0 && allChildAvg != null) {
 
-    public Double calculateBudgetUnit(ArrayList<Double> allChildAvg){
+      double sum = 0.0;
 
-        if (Double.compare(santaBudget, 0.0) != 0 && allChildAvg != null){
-            //Double[] allChildAvgArr = (Double[]) allChildAvg.toArray();
-            //Double sum = Arrays.stream(allChildAvgArr).mapToDouble(Double::doubleValue).sum();
-            Double sum = 0.0;
-
-            for(Double db : allChildAvg){
-                if (db != null) {
-                    sum += db;
-                }
-
-            }
-            //System.out.println("ALL CHILD AVG = " + sum);
-            budgetUnit = santaBudget / sum;
-            return budgetUnit;
+      for (Double db : allChildAvg) {
+        if (db != null) {
+          sum += db;
         }
+      }
 
-        return 0.0;
-
+      budgetUnit = santaBudget / sum;
+      return budgetUnit;
     }
 
-    public HashMap<String, ArrayList<Gift>> giftListToMap(){
-        HashMap<String, ArrayList<Gift>> giftMap = new HashMap<>();
-        //System.out.println("santa gift list + " + santaGiftList);
-        for(Gift gift : santaGiftList){
-            //System.out.println("santa gift list + " + santaGiftList);
-            if (!giftMap.containsKey(gift.getCategory())){ // daca nu contine
-                ArrayList<Gift> gifts = new ArrayList<>();
-                gifts.add(gift);
-                giftMap.put(gift.getCategory(), gifts);
-            }
-            else {
-                giftMap.get(gift.getCategory()).add(gift);
-            }
-        }
+    return 0.0;
+  }
 
-        return giftMap;
-    }
+  /**
+   * @return
+   */
+  public HashMap<String, ArrayList<Gift>> giftListToMap() {
+    HashMap<String, ArrayList<Gift>> giftMap = new HashMap<>();
 
-    public Double getSantaBudget() {
-        return santaBudget;
-    }
+    for (Gift gift : santaGiftList) {
 
-    public void setSantaBudget(Double santaBudget) {
-        this.santaBudget = santaBudget;
+      if (!giftMap.containsKey(gift.getCategory())) {
+        ArrayList<Gift> gifts = new ArrayList<>();
+        gifts.add(gift);
+        giftMap.put(gift.getCategory(), gifts);
+      } else {
+        giftMap.get(gift.getCategory()).add(gift);
+      }
     }
+    return giftMap;
+  }
 
-    public ArrayList<Gift> getSantaGiftList() {
-        return santaGiftList;
-    }
+  public Double getSantaBudget() {
+    return santaBudget;
+  }
 
-    public void setSantaGiftList(ArrayList<Gift> santaGiftList) {
-        this.santaGiftList = santaGiftList;
-    }
+  public void setSantaBudget(final Double santaBudget) {
+    this.santaBudget = santaBudget;
+  }
 
-    @Override
-    public String toString() {
-        return "Santa{" +
-                "santaBudget=" + santaBudget +
-                ", santaGiftList=" + santaGiftList +
-                '}';
-    }
+  public ArrayList<Gift> getSantaGiftList() {
+    return santaGiftList;
+  }
+
+  public void setSantaGiftList(final ArrayList<Gift> santaGiftList) {
+    this.santaGiftList = santaGiftList;
+  }
+
+  @Override
+  public String toString() {
+    return "Santa{" + "santaBudget=" + santaBudget + ", santaGiftList=" + santaGiftList + '}';
+  }
 }

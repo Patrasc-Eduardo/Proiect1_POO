@@ -1,9 +1,9 @@
 package entities;
 
-public class Gift {
-  private String productName;
-  private Double price;
-  private String category;
+public final class Gift {
+  private final String productName;
+  private final Double price;
+  private final String category;
 
   public Gift(final String productName, final Double price, final String category) {
     this.productName = productName;
@@ -15,24 +15,12 @@ public class Gift {
     return productName;
   }
 
-  public void setProductName(String productName) {
-    this.productName = productName;
-  }
-
   public Double getPrice() {
     return price;
   }
 
-  public void setPrice(Double price) {
-    this.price = price;
-  }
-
   public String getCategory() {
     return category;
-  }
-
-  public void setCategory(String category) {
-    this.category = category;
   }
 
   @Override

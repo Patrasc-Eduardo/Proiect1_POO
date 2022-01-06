@@ -13,12 +13,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import utils.Utils;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class InputLoader {
+public final class InputLoader {
   /** The path to the input file */
   private final String inputPath;
 
@@ -84,8 +83,7 @@ public class InputLoader {
                 .add(
                     new Gift(
                         ((String) ((JSONObject) jsonGift).get(Constants.PRODUCT_NAME)),
-                        Double.valueOf(
-                            (Long) ((JSONObject) jsonGift).get(Constants.PRICE)),
+                        Double.valueOf((Long) ((JSONObject) jsonGift).get(Constants.PRICE)),
                         // Double.valueOf((Long) jsonObject.get(Constants.PRICE)),
                         ((String) ((JSONObject) jsonGift).get(Constants.CATEGORY))));
           } catch (NullPointerException ignored) {
@@ -114,11 +112,14 @@ public class InputLoader {
                 newGifts.add(
                     new Gift(
                         ((String) ((JSONObject) gifts).get(Constants.PRODUCT_NAME)),
-                            Double.valueOf(
-                                    (Long) ((JSONObject) gifts).get(Constants.PRICE)),
+                        Double.valueOf((Long) ((JSONObject) gifts).get(Constants.PRICE)),
                         ((String) ((JSONObject) gifts).get(Constants.CATEGORY))));
               } catch (NullPointerException ignored) {
-                ;
+                newGifts.add(
+                    new Gift(
+                        ((String) ((JSONObject) gifts).get(Constants.PRODUCT_NAME)),
+                        null,
+                        ((String) ((JSONObject) gifts).get(Constants.CATEGORY))));
               }
             }
           }
@@ -150,13 +151,13 @@ public class InputLoader {
                         (Double.valueOf((Long) ((JSONObject) upd).get(Constants.NICE_SCORE))),
                         Utils.convertJSONArrayString(
                             (JSONArray) ((JSONObject) upd).get(Constants.GIFTS_PREFERENCES))));
-             } catch (NullPointerException ignored) {
+              } catch (NullPointerException ignored) {
                 newChildUpdt.add(
-                        new ChildUpdate(
-                                (Math.toIntExact((Long) ((JSONObject) upd).get(Constants.ID))),
-                                null,
-                                Utils.convertJSONArrayString(
-                                        (JSONArray) ((JSONObject) upd).get(Constants.GIFTS_PREFERENCES))));
+                    new ChildUpdate(
+                        (Math.toIntExact((Long) ((JSONObject) upd).get(Constants.ID))),
+                        null,
+                        Utils.convertJSONArrayString(
+                            (JSONArray) ((JSONObject) upd).get(Constants.GIFTS_PREFERENCES))));
               }
             }
           }

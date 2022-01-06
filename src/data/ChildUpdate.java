@@ -1,10 +1,11 @@
 package data;
+
 import java.util.ArrayList;
 
-public class ChildUpdate {
-  private int id;
-  private Double niceScore;
-  private ArrayList<String> giftsPreferences;
+public final class ChildUpdate {
+  private final int id;
+  private final Double niceScore;
+  private final ArrayList<String> giftsPreferences;
 
   public ChildUpdate(
       final int id, final Double niceScore, final ArrayList<String> giftsPreferences) {
@@ -17,24 +18,12 @@ public class ChildUpdate {
     return id;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
-
   public Double getNiceScore() {
     return niceScore;
   }
 
-  public void setNiceScore(Double niceScore) {
-    this.niceScore = niceScore;
-  }
-
   public ArrayList<String> getGiftsPreferences() {
     return giftsPreferences;
-  }
-
-  public void setGiftsPreferences(ArrayList<String> giftsPreferences) {
-    this.giftsPreferences = giftsPreferences;
   }
 
   @Override

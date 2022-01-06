@@ -1,16 +1,12 @@
 package entities;
 
 import DesignPatterns.AverageScoreStrategy;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
 public class Baby extends Child implements AverageScoreStrategy {
 
+
     public Baby(Child ch){
+
         this.setFirstName(ch.getFirstName());
         this.setLastName(ch.getLastName());
         this.setAge(ch.getAge());
@@ -32,9 +28,9 @@ public class Baby extends Child implements AverageScoreStrategy {
 //    }
 
     @Override
-    public Double calculateAvgScore() {
+    public void calculateAvgScore() {
         this.setAverageScore(10.0);
-        System.out.println("AVG SCORE = " + 10.0);
-        return 10.0;
+        //System.out.println("AVG SCORE = " + 10.0);
+        //return 10.0;
     }
 }

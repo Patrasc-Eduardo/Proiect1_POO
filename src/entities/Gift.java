@@ -1,15 +1,5 @@
 package entities;
 
-import enums.Category;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.ArrayList;
-
-@Getter
-@Setter
-@NoArgsConstructor
 public class Gift {
   private String productName;
   private Double price;
@@ -18,6 +8,30 @@ public class Gift {
   public Gift(final String productName, final Double price, final String category) {
     this.productName = productName;
     this.price = price;
+    this.category = category;
+  }
+
+  public String getProductName() {
+    return productName;
+  }
+
+  public void setProductName(String productName) {
+    this.productName = productName;
+  }
+
+  public Double getPrice() {
+    return price;
+  }
+
+  public void setPrice(Double price) {
+    this.price = price;
+  }
+
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
     this.category = category;
   }
 

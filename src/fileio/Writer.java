@@ -1,10 +1,5 @@
 package fileio;
 
-import com.fasterxml.jackson.databind.ObjectWriter;
-import common.Constants;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,13 +9,12 @@ import java.io.IOException;
  * DO NOT MODIFY
  */
 public final class Writer {
-    /**
-     * The file where the data will be written
-     */
-    private final FileWriter file;
 
     public Writer(final String path) throws IOException {
-        this.file = new FileWriter(path);
+        /**
+         * The file where the data will be written
+         */
+        FileWriter file = new FileWriter(path);
     }
 
     /**
@@ -29,24 +23,24 @@ public final class Writer {
      * @return An JSON Object
      * @throws IOException in case of exceptions to reading / writing
      */
-    public JSONObject writeFile(final Output output) throws IOException {
-        JSONObject object = new JSONObject();
-         // Print it with specified indentation
-        return object;
-    }
+//    public JSONObject writeFile(final Output output) throws IOException {
+//        JSONObject object = new JSONObject();
+//         // Print it with specified indentation
+//        return object;
+//    }
 
     /**
      * writes to the file and close it
      *
      * @param array of JSON
      */
-    public void closeJSON(final JSONArray array) {
-        try {
-            file.write(array.toJSONString());
-            file.flush();
-            file.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void closeJSON(final JSONArray array) {
+//        try {
+//            file.write(array.toJSONString());
+//            file.flush();
+//            file.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

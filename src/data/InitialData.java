@@ -3,18 +3,17 @@ package data;
 import entities.Child;
 import entities.Gift;
 import enums.Cities;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import java.util.ArrayList;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class InitialData {
   private ArrayList<Child> children = new ArrayList<>();
   private ArrayList<Gift> santaGiftsList = new ArrayList<>();
   private ArrayList<Cities> initCitiesList = new ArrayList<>();
+
+  public InitialData(){
+
+  }
 
   public InitialData(
       final ArrayList<Child> children,
@@ -24,6 +23,30 @@ public class InitialData {
     this.santaGiftsList = santaGiftsList;
     this.initCitiesList = initCitiesList;
   }
+
+  public ArrayList<Child> getChildren() {
+    return children;
+  }
+
+  public void setChildren(ArrayList<Child> children) {
+    this.children = children;
+  }
+
+  public ArrayList<Gift> getSantaGiftsList() {
+    return santaGiftsList;
+  }
+
+  public void setSantaGiftsList(ArrayList<Gift> santaGiftsList) {
+    this.santaGiftsList = santaGiftsList;
+  }
+
+//  public ArrayList<Cities> getInitCitiesList() {
+//    return initCitiesList;
+//  }
+//
+//  public void setInitCitiesList(ArrayList<Cities> initCitiesList) {
+//    this.initCitiesList = initCitiesList;
+//  }
 
   @Override
   public String toString() {

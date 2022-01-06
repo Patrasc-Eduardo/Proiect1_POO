@@ -1,7 +1,5 @@
 package common;
 
-import java.net.URI;
-
 public final class Constants {
     public static final String OUTPUT_PATH = "output/out_";
     public static final String OUTPUT_DIR = "output";

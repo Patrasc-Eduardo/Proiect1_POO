@@ -2,17 +2,9 @@ package entities;
 
 import DesignPatterns.AverageScoreStrategy;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import enums.Cities;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class Child implements AverageScoreStrategy {
   private int id;
   private String lastName;
@@ -71,6 +63,7 @@ public class Child implements AverageScoreStrategy {
     this.assignedBudget = assignedBudget;
     this.receivedGifts = receivedGifts;
   }
+
   public Child(Child child){
         this.id = child.id;
         this.age = child.age;
@@ -88,13 +81,104 @@ public class Child implements AverageScoreStrategy {
         this.receivedGifts = new ArrayList<>(child.getReceivedGifts());
   }
 
-  public Double calculateAssignedBudget(Double budgetUnit){
+    public Child() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public ArrayList<String> getGiftsPreferences() {
+        return giftsPreferences;
+    }
+
+    public void setGiftsPreferences(ArrayList<String> giftsPreferences) {
+        this.giftsPreferences = giftsPreferences;
+    }
+
+    public Double getAverageScore() {
+        return averageScore;
+    }
+
+    public void setAverageScore(Double averageScore) {
+        this.averageScore = averageScore;
+    }
+
+    public ArrayList<Double> getNiceScoreHistory() {
+        return niceScoreHistory;
+    }
+
+    public void setNiceScoreHistory(ArrayList<Double> niceScoreHistory) {
+        this.niceScoreHistory = niceScoreHistory;
+    }
+
+    public Double getNiceScore() {
+        return niceScore;
+    }
+
+    public void setNiceScore(Double niceScore) {
+        this.niceScore = niceScore;
+    }
+
+    public Double getAssignedBudget() {
+        return assignedBudget;
+    }
+
+    public void setAssignedBudget(Double assignedBudget) {
+        this.assignedBudget = assignedBudget;
+    }
+
+    public ArrayList<Gift> getReceivedGifts() {
+        return receivedGifts;
+    }
+
+    public void setReceivedGifts(ArrayList<Gift> receivedGifts) {
+        this.receivedGifts = receivedGifts;
+    }
+
+    public void calculateAssignedBudget(Double budgetUnit){
     if (averageScore != null && budgetUnit != null){
      assignedBudget = averageScore * budgetUnit;
         //assignedBudget = BigDecimal.valueOf(averageScore).multiply(BigDecimal.valueOf(budgetUnit));
-
     }
-    return this.assignedBudget;
+    //return this.assignedBudget;
   }
 
 //  @Override
@@ -147,7 +231,7 @@ public class Child implements AverageScoreStrategy {
   }
 
   @Override
-  public Double calculateAvgScore() {
-    return averageScore;
+  public void calculateAvgScore() {
+    //return averageScore;
   }
 }

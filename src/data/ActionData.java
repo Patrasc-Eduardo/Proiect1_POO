@@ -1,14 +1,7 @@
 package data;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.ArrayList;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class ActionData {
   private int numberOfYears;
   private Double santaBudget;
@@ -23,6 +16,38 @@ public class ActionData {
     this.numberOfYears = numberOfYears;
     this.santaBudget = santaBudget;
     this.initialData = initialData;
+    this.annualChanges = annualChanges;
+  }
+
+  public int getNumberOfYears() {
+    return numberOfYears;
+  }
+
+  public void setNumberOfYears(int numberOfYears) {
+    this.numberOfYears = numberOfYears;
+  }
+
+  public Double getSantaBudget() {
+    return santaBudget;
+  }
+
+  public void setSantaBudget(Double santaBudget) {
+    this.santaBudget = santaBudget;
+  }
+
+  public InitialData getInitialData() {
+    return initialData;
+  }
+
+  public void setInitialData(InitialData initialData) {
+    this.initialData = initialData;
+  }
+
+  public ArrayList<AnnualChange> getAnnualChanges() {
+    return annualChanges;
+  }
+
+  public void setAnnualChanges(ArrayList<AnnualChange> annualChanges) {
     this.annualChanges = annualChanges;
   }
 

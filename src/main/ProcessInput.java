@@ -11,21 +11,20 @@ import entities.Gift;
 import entities.Santa;
 import fileio.AnnualOutput;
 import fileio.Output;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class ProcessInput {
   private int firstRound = 0;
+
+  public int getFirstRound() {
+    return firstRound;
+  }
 
   public void eliminateAdults(ArrayList<Child> childList) {
     childList.removeIf(ch -> ch.getAge() > 18);
@@ -58,9 +57,9 @@ public class ProcessInput {
     }
 
     childList.removeIf(ch -> ch.getAge() > 18);
-    System.out.println("Annual children update " + anChange);
+    //System.out.println("Annual children update " + anChange);
     for (ChildUpdate chUpd : anChange.getChildrenUpdates()) {
-      System.out.println("CHUPD IDDD " + chUpd.getId());
+      //System.out.println("CHUPD IDDD " + chUpd.getId());
       Child child = findById(childList, chUpd.getId());
       //System.out.println("Found child " + child.getFirstName());
       if (child != null) {
@@ -68,14 +67,14 @@ public class ProcessInput {
         if (chUpd.getNiceScore() != null) {
           child.getNiceScoreHistory().add(chUpd.getNiceScore());
         }
-        System.out.println("Ch upd gift pref " + chUpd.getGiftsPreferences());
+        //System.out.println("Ch upd gift pref " + chUpd.getGiftsPreferences());
         if (!chUpd.getGiftsPreferences().isEmpty()) {
-          System.out.println("chupd gift pref + " + chUpd.getGiftsPreferences());
+          //System.out.println("chupd gift pref + " + chUpd.getGiftsPreferences());
           Collections.reverse(chUpd.getGiftsPreferences());
           for (String pref : chUpd.getGiftsPreferences()) {
-            System.out.println("Updated pref + " + pref);
+            //System.out.println("Updated pref + " + pref);
             if (child.getGiftsPreferences().toString().contains(pref)) {
-              System.out.println("FOUND DUPLICATE " + pref);
+              //System.out.println("FOUND DUPLICATE " + pref);
               child.getGiftsPreferences().remove(pref);
               child.getGiftsPreferences().add(0, pref);
               //Collections.reverse(child.getGiftsPreferences());
@@ -119,7 +118,7 @@ public class ProcessInput {
   }
 
   public void init(ActionData input, String filePath2) throws IOException {
-    int numberOfYears = input.getNumberOfYears();
+    //int numberOfYears = input.getNumberOfYears();
     Double initialSantaBudget = input.getSantaBudget();
     MainDB mainDB = MainDB.getInstance();
     Output output = new Output();
@@ -168,20 +167,20 @@ public class ProcessInput {
 
       Double budgetUnit = mainDB.getSanta().calculateBudgetUnit(allChildAvg);
 
-      System.out.println("Budget Unit " + budgetUnit);
+      //System.out.println("Budget Unit " + budgetUnit);
 
       for (Child ch : mainDB.getChildrenList()) {
         ch.calculateAssignedBudget(budgetUnit);
       }
 
       HashMap<String, ArrayList<Gift>> santaGiftMap = mainDB.getSanta().giftListToMap();
-      ArrayList<Gift> arr = new ArrayList<>();
+      ArrayList<Gift> arr;
 
       // while (Double.compare(initialSantaBudget, 0.0) > 0) {
       for (Child ch : mainDB.getChildrenList()) {
         Double childAssignedBudget = ch.getAssignedBudget();
-        System.out.println("child " + ch.getFirstName());
-        System.out.println("assigned child " + childAssignedBudget);
+        //System.out.println("child " + ch.getFirstName());
+        //System.out.println("assigned child " + childAssignedBudget);
 
         if (Double.compare(childAssignedBudget, 0.0) > 0) {
           for (String prefs : ch.getGiftsPreferences()) {
@@ -193,7 +192,7 @@ public class ProcessInput {
               if (!arr.isEmpty()) {
 
                 //System.out.println("before arr " + arr);
-                arr.sort(((o1, o2) -> o1.getPrice().compareTo(o2.getPrice())));
+                arr.sort((Comparator.comparing(Gift::getPrice)));
                 //System.out.println("after arr " + arr);
                 Gift minGift = arr.get(0);
 
@@ -202,7 +201,7 @@ public class ProcessInput {
 
                 if ((compAssignedBudget < 0 || compAssignedBudget == 0)
                     && (compInitialSantaBudget < 0 || compInitialSantaBudget == 0)) {
-                  System.out.println("added GIFT " + minGift.getProductName());
+                  //System.out.println("added GIFT " + minGift.getProductName());
                   ch.getReceivedGifts().add(minGift);
                   // santaGiftMap.get(prefs).remove(0);
                   childAssignedBudget -= minGift.getPrice();
@@ -217,8 +216,8 @@ public class ProcessInput {
         }
       }
       firstRound = 1;
-      System.out.println();
-      System.out.println("######################## Round " + 0 + "#############################");
+      //System.out.println();
+      //System.out.println("######################## Round " + 0 + "#############################");
       //System.out.println(mainDB.getChildrenList());
 
       /////anOutput.getChildren().addAll(mainDB.getChildrenList());
@@ -237,11 +236,11 @@ public class ProcessInput {
     for (int i = 0; i < input.getNumberOfYears(); i++) {
       AnnualOutput annualOutput = new AnnualOutput();
 
-      System.out.println(
-          "############### Round "
-              + (i + 1)
-              + "######################"
-              + "##################################################");
+//      System.out.println(
+//          "############### Round "
+//              + (i + 1)
+//              + "######################"
+//              + "##################################################");
 
       AnnualChange anChange = input.getAnnualChanges().get(i);
 
@@ -255,7 +254,7 @@ public class ProcessInput {
       updateOldSanta(mainDB.getSanta(), anChange);
 
       initialSantaBudget = mainDB.getSanta().getSantaBudget();
-      System.out.println("Santa Budget " + initialSantaBudget);
+      //System.out.println("Santa Budget " + initialSantaBudget);
 
       ChildFactory chFactory = new ChildFactory();
       ArrayList<Child> childrenList = new ArrayList<>();
@@ -263,8 +262,8 @@ public class ProcessInput {
       for (Child ch : mainDB.getChildrenList()) {
 
         ch = chFactory.createChild(ch.getAge(), ch);
-        System.out.println("Created " + ch.getLastName() + " " + ch.getFirstName() + " with age "
-        + ch.getAge());
+//        System.out.println("Created " + ch.getLastName() + " " + ch.getFirstName() + " with age "
+//        + ch.getAge());
         childrenList.add(ch);
       }
 
@@ -281,22 +280,22 @@ public class ProcessInput {
 
       Double budgetUnit = mainDB.getSanta().calculateBudgetUnit(allChildAvg);
 
-      System.out.println("Budget Unit " + budgetUnit);
+      //System.out.println("Budget Unit " + budgetUnit);
 
       for (Child ch : mainDB.getChildrenList()) {
         ch.calculateAssignedBudget(budgetUnit);
       }
 
       HashMap<String, ArrayList<Gift>> santaGiftMap = mainDB.getSanta().giftListToMap();
-      ArrayList<Gift> arr = new ArrayList<>();
+      ArrayList<Gift> arr;
 
       for (Child ch : mainDB.getChildrenList()) {
         Double childAssignedBudget = ch.getAssignedBudget();
 
-        System.out.println();
-        System.out.println("child " + ch.getFirstName() + " " + ch.getLastName());
-        System.out.println("assigned child " + childAssignedBudget);
-        System.out.println();
+//        System.out.println();
+//        System.out.println("child " + ch.getFirstName() + " " + ch.getLastName());
+//        System.out.println("assigned child " + childAssignedBudget);
+//        System.out.println();
 
         if (Double.compare(childAssignedBudget, 0.0) > 0) {
           for (String prefs : ch.getGiftsPreferences()) {
@@ -308,27 +307,27 @@ public class ProcessInput {
               if (!arr.isEmpty()) {
 
                 //System.out.println("before arr " + arr);
-                arr.sort(((o1, o2) -> o1.getPrice().compareTo(o2.getPrice())));
+                arr.sort((Comparator.comparing(Gift::getPrice)));
 
-                System.out.println();
-                System.out.println("after arr " + arr);
-                System.out.println();
+//                System.out.println();
+//                System.out.println("after arr " + arr);
+//                System.out.println();
 
                 Gift minGift = arr.get(0);
 
                 int compAssignedBudget = Double.compare(minGift.getPrice(), childAssignedBudget);
                 int compInitialSantaBudget = Double.compare(minGift.getPrice(), initialSantaBudget);
 
-                System.out.println();
-
-                System.out.println("compAssigned " + compAssignedBudget);
-                System.out.println("compInitial " + compInitialSantaBudget);
-                System.out.println("initial Santa Budget " + initialSantaBudget);
-                System.out.println();
+//                System.out.println();
+//
+//                System.out.println("compAssigned " + compAssignedBudget);
+//                System.out.println("compInitial " + compInitialSantaBudget);
+//                System.out.println("initial Santa Budget " + initialSantaBudget);
+//                System.out.println();
 
                 if ((compAssignedBudget < 0 || compAssignedBudget == 0)
                     && (compInitialSantaBudget < 0 || compInitialSantaBudget == 0)) {
-                  System.out.println("RECEIVED GIFT " + minGift.getProductName());
+                  //System.out.println("RECEIVED GIFT " + minGift.getProductName());
                   ch.getReceivedGifts().add(minGift);
                   // santaGiftMap.get(prefs).remove(0);
                   childAssignedBudget -= minGift.getPrice();
@@ -341,7 +340,7 @@ public class ProcessInput {
         }
       }
 
-      System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+      //System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
       //System.out.println("Output" + mainDB.getChildrenList());
 //      annualOutput.getChildren().addAll(mainDB.getChildrenList());
 //      output.getAnnualChildren().add(anOutput);

@@ -1,20 +1,16 @@
 package entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
-@Getter
-@Setter
-@NoArgsConstructor
 public class Santa {
     private Double santaBudget;
     private ArrayList<Gift> santaGiftList;
     private Double budgetUnit;
+
+    public Santa(){
+
+    }
 
     public Santa(Double santaBudget, ArrayList<Gift> santaGiftList){
         this.santaBudget = santaBudget;
@@ -46,7 +42,7 @@ public class Santa {
                 }
 
             }
-            System.out.println("ALL CHILD AVG = " + sum);
+            //System.out.println("ALL CHILD AVG = " + sum);
             budgetUnit = santaBudget / sum;
             return budgetUnit;
         }
@@ -71,6 +67,22 @@ public class Santa {
         }
 
         return giftMap;
+    }
+
+    public Double getSantaBudget() {
+        return santaBudget;
+    }
+
+    public void setSantaBudget(Double santaBudget) {
+        this.santaBudget = santaBudget;
+    }
+
+    public ArrayList<Gift> getSantaGiftList() {
+        return santaGiftList;
+    }
+
+    public void setSantaGiftList(ArrayList<Gift> santaGiftList) {
+        this.santaGiftList = santaGiftList;
     }
 
     @Override

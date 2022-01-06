@@ -1,12 +1,5 @@
 package entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
 public class YoungAdult extends Child{
 //    public YoungAdult(){
 //        super();

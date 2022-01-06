@@ -3,17 +3,8 @@ package main;
 import checker.Checker;
 import common.Constants;
 import data.ActionData;
-import entities.Child;
-import fileio.AnnualOutput;
 import fileio.InputLoader;
-import fileio.Output;
-import fileio.OutputChild;
-import fileio.Writer;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -48,9 +39,8 @@ public final class Main {
         checker.deleteFiles(outputDirectory.listFiles());
 
         int i = 1;
-        int creat = 0;
 
-        for (File file : Objects.requireNonNull(directory.listFiles())) {
+        for (File ignored : Objects.requireNonNull(directory.listFiles())) {
 
             String filepath = Constants.OUTPUT_PATH + i + Constants.FILE_EXTENSION;
             String inputFile = Constants.TESTS_PATH + "test" + i + Constants.FILE_EXTENSION;
@@ -77,7 +67,7 @@ public final class Main {
     public static void action(final String filePath1, final String filePath2) throws IOException {
         InputLoader inputLoader = new InputLoader(filePath1);
         ActionData input = inputLoader.readData();
-        FileWriter fileWriter = new FileWriter(filePath2);
+        //FileWriter fileWriter = new FileWriter(filePath2);
 
 //        JSONArray annualChild = new JSONArray();
 //
@@ -113,25 +103,25 @@ public final class Main {
         //printInput(input, filePath1);
 
         ProcessInput processInput = new ProcessInput();
-        System.out.println("Annual changes " + input.getAnnualChanges());
+        //System.out.println("Annual changes " + input.getAnnualChanges());
         processInput.init(input, filePath2);
 
-        System.out.println();
-        System.out.println();
+        //System.out.println();
+        //System.out.println();
     }
 
-    public static void printInput(ActionData inp, String filePath1){
-        System.out.println("File title " + filePath1);
-        System.out.println();
-        System.out.println("Number of years " + inp.getNumberOfYears());
-        System.out.println("Santa Budget " + inp.getSantaBudget());
-        System.out.println();
-        System.out.println("Initial data : ");
-        System.out.println();
-        System.out.println(inp.getInitialData());
-        System.out.println();
-        System.out.println("Annual changes : ");
-        System.out.println();
-        System.out.println(inp.getAnnualChanges());
-    }
+//    public static void printInput(ActionData inp, String filePath1){
+//        System.out.println("File title " + filePath1);
+//        System.out.println();
+//        System.out.println("Number of years " + inp.getNumberOfYears());
+//        System.out.println("Santa Budget " + inp.getSantaBudget());
+//        System.out.println();
+//        System.out.println("Initial data : ");
+//        System.out.println();
+//        System.out.println(inp.getInitialData());
+//        System.out.println();
+//        System.out.println("Annual changes : ");
+//        System.out.println();
+//        System.out.println(inp.getAnnualChanges());
+//    }
 }

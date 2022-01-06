@@ -1,17 +1,10 @@
 package database;
-
 import entities.Child;
 import entities.Santa;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.ArrayList;
 
-@Getter
-@Setter
 public class MainDB {
-    private Santa santa = new Santa();
+    private final Santa santa = new Santa();
     private ArrayList<Child> childrenList = new ArrayList<>();
 
     private static MainDB instance = null;
@@ -25,6 +18,19 @@ public class MainDB {
             instance = new MainDB();
         }
         return instance;
+    }
+
+    public Santa getSanta() {
+        return santa;
+    }
+
+
+    public ArrayList<Child> getChildrenList() {
+        return childrenList;
+    }
+
+    public void setChildrenList(ArrayList<Child> childrenList) {
+        this.childrenList = childrenList;
     }
 
     @Override

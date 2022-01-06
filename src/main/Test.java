@@ -4,7 +4,7 @@ import common.Constants;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Scanner;
+
 
 /** Use this if you want to test on a specific input file */
 public final class Test {

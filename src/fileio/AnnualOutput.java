@@ -1,17 +1,14 @@
 package fileio;
-
 import entities.Child;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.ArrayList;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class AnnualOutput {
-    private ArrayList<Child> children = new ArrayList<>();
+    private final ArrayList<Child> children = new ArrayList<>();
+
+    public ArrayList<Child> getChildren() {
+        return children;
+    }
 
     @Override
     public String toString() {

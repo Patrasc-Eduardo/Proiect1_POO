@@ -1,14 +1,6 @@
 package data;
-
-import entities.Gift;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import java.util.ArrayList;
 
-@Getter
-@Setter
-@NoArgsConstructor
 public class ChildUpdate {
   private int id;
   private Double niceScore;
@@ -18,6 +10,30 @@ public class ChildUpdate {
       final int id, final Double niceScore, final ArrayList<String> giftsPreferences) {
     this.id = id;
     this.niceScore = niceScore;
+    this.giftsPreferences = giftsPreferences;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public Double getNiceScore() {
+    return niceScore;
+  }
+
+  public void setNiceScore(Double niceScore) {
+    this.niceScore = niceScore;
+  }
+
+  public ArrayList<String> getGiftsPreferences() {
+    return giftsPreferences;
+  }
+
+  public void setGiftsPreferences(ArrayList<String> giftsPreferences) {
     this.giftsPreferences = giftsPreferences;
   }
 

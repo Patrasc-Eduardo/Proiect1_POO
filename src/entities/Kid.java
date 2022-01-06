@@ -1,12 +1,5 @@
 package entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
 public class Kid extends Child{
 
     public Kid(Child ch){
@@ -25,9 +18,9 @@ public class Kid extends Child{
 //    public Kid(){
 //        super();
 //    }
-
+    
     @Override
-    public Double calculateAvgScore() {
+    public void calculateAvgScore() {
         Double nr = 0.0;
         Double sum = 0.0;
 
@@ -37,11 +30,12 @@ public class Kid extends Child{
         }
 
         if (Double.compare(nr, 0.0) == 0 || Double.compare(sum, 0.0) == 0){
-            return this.getNiceScore();
+            //return this.getNiceScore();
+            this.setAverageScore(getNiceScore());
         }
         Double avg = sum/nr;
         this.setAverageScore(avg);
-        System.out.println("AVG SCORE = " + avg);
-        return avg;
+        //System.out.println("AVG SCORE = " + avg);
+        //return avg;
     }
 }

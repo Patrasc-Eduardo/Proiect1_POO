@@ -1,16 +1,16 @@
 package fileio;
-
-import data.AnnualChange;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.ArrayList;
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class Output {
     private ArrayList<AnnualOutput> annualChildren = new ArrayList<>();
+
+    public ArrayList<AnnualOutput> getAnnualChildren() {
+        return annualChildren;
+    }
+
+    public void setAnnualChildren(ArrayList<AnnualOutput> annualChildren) {
+        this.annualChildren = annualChildren;
+    }
 
     @Override
     public String toString() {

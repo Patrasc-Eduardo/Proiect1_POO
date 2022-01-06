@@ -19,7 +19,6 @@ public class ChildFactory {
   }
 
   public Child createChild(int age, Child ch) {
-    boolean bool;
 
     if (isBetween(age, 0, 4)) {
       return new Baby(ch);

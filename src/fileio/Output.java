@@ -10,5 +10,12 @@ import java.util.ArrayList;
 @Setter
 @NoArgsConstructor
 public class Output {
-    private ArrayList<AnnualOutput> outputList = new ArrayList<>();
+    private ArrayList<AnnualOutput> annualChildren = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Output{" +
+                "outputList=" + annualChildren +
+                '}';
+    }
 }

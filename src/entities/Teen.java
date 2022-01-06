@@ -43,7 +43,7 @@ public class Teen extends Child{
 
         Double avg = sum/nr;
         this.setAverageScore(avg);
-        System.out.println("AVG SCORE = " + avg);
+        System.out.println("AVG PONDERATED SCORE = " + avg);
         return avg;
     }
 

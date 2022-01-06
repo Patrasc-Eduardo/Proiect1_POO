@@ -24,13 +24,13 @@ public class ChildFactory {
     if (isBetween(age, 0, 4)) {
       return new Baby(ch);
     }
-    if (isBetween(age, 5, 12)) {
+    if (isBetween(age, 5, 11)) {
       return new Kid(ch);
     }
     if (isBetween(age, 12, 18)) {
       return new Teen(ch);
     }
-    if (isBetween(age, 18, 120)) {
+    if (isBetween(age, 19, 120)) {
       return new YoungAdult(ch);
       //return null;
     }

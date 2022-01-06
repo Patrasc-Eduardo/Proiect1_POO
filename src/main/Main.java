@@ -61,6 +61,7 @@ public final class Main {
             if (isCreated) {
                 //creat ++;
                 action(in.getAbsolutePath(), filepath);
+                //action(in.getAbsolutePath(), out.getAbsolutePath());
             }
             i++;
         }
@@ -112,8 +113,8 @@ public final class Main {
         //printInput(input, filePath1);
 
         ProcessInput processInput = new ProcessInput();
-
-        processInput.init(input);
+        System.out.println("Annual changes " + input.getAnnualChanges());
+        processInput.init(input, filePath2);
 
         System.out.println();
         System.out.println();

@@ -150,8 +150,13 @@ public class InputLoader {
                         (Double.valueOf((Long) ((JSONObject) upd).get(Constants.NICE_SCORE))),
                         Utils.convertJSONArrayString(
                             (JSONArray) ((JSONObject) upd).get(Constants.GIFTS_PREFERENCES))));
-              } catch (NullPointerException ignored) {
-                ;
+             } catch (NullPointerException ignored) {
+                newChildUpdt.add(
+                        new ChildUpdate(
+                                (Math.toIntExact((Long) ((JSONObject) upd).get(Constants.ID))),
+                                null,
+                                Utils.convertJSONArrayString(
+                                        (JSONArray) ((JSONObject) upd).get(Constants.GIFTS_PREFERENCES))));
               }
             }
           }

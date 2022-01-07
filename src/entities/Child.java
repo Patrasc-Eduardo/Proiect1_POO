@@ -72,7 +72,6 @@ public class Child implements AverageScoreStrategy {
     this.niceScoreHistory = new ArrayList<>(child.getNiceScoreHistory());
     this.averageScore = child.averageScore;
     this.assignedBudget = child.assignedBudget;
-
     this.receivedGifts = new ArrayList<>(child.getReceivedGifts());
   }
 
@@ -167,6 +166,7 @@ public class Child implements AverageScoreStrategy {
   }
 
   /**
+   * Calculeaza bugetul asignat.
    * @param budgetUnit
    */
   public void calculateAssignedBudget(final Double budgetUnit) {

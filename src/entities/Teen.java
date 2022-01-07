@@ -14,7 +14,9 @@ public final class Teen extends Child {
     this.setNiceScoreHistory(ch.getNiceScoreHistory());
     this.setReceivedGifts(ch.getReceivedGifts());
   }
-
+  /**
+   * Calculeaza average score ca o medie ponderata.
+   */
   @Override
   public void calculateAvgScore() {
     double nr = 0.0;

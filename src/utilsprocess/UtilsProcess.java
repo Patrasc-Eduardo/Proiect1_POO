@@ -15,16 +15,25 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public final class UtilsProcess {
-
+  /** Pentru checkstyle */
   public static final int ADULT_AGE = 18;
+
   private UtilsProcess() { }
 
-  /** @param childList */
+  /**
+   * Elimina copiii cu varsta de peste 18 ani.
+   *
+   * @param childList lista de copii
+   */
   public static void eliminateAdults(final ArrayList<Child> childList) {
     childList.removeIf(ch -> ch.getAge() > ADULT_AGE);
   }
 
-  /** @param childList */
+  /**
+   * Elimina cadourile primite de la runda anterioara.
+   *
+   * @param childList lista de copii
+   */
   public static void removeReceivedGifts(final ArrayList<Child> childList) {
     for (Child ch : childList) {
       ch.getReceivedGifts().clear();
@@ -32,8 +41,10 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param childList
-   * @param newChildList
+   * Adauga noi copii (care nu au peste 18 ani) in lista de copii a mosului.
+   *
+   * @param childList lista de copii
+   * @param newChildList noua lista de copii
    */
   public static void addNewChildren(
       final ArrayList<Child> childList, final ArrayList<Child> newChildList) {
@@ -45,9 +56,11 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param childList
-   * @param id
-   * @return
+   * Cauta si returneaza un copil dupa ID
+   *
+   * @param childList lista de copii
+   * @param id ID-ul copilului pe care vrem sa-l gasim si returnam
+   * @return copilul gasit
    */
   public static Child findById(final ArrayList<Child> childList, final int id) {
     for (Child ch : childList) {
@@ -59,8 +72,10 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param childList
-   * @param anChange
+   * Actualizam informatiile despre copiii de la runda anterioara prin clasa AnnualChange.
+   *
+   * @param childList lista de copii
+   * @param anChange schimbarea anuala
    */
   public static void updateOldChilds(
       final ArrayList<Child> childList, final AnnualChange anChange) {
@@ -101,9 +116,11 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param newGift
-   * @param giftList
-   * @return
+   * Metoda care verifica daca deja exista un cadou in lista de cadouri data ca parametru.
+   *
+   * @param newGift noul cadou
+   * @param giftList lista de cadouri
+   * @return 1 daca exista cadoul duplicat, 0 altfel
    */
   public static int checkForDuplicateGifts(final String newGift, final ArrayList<Gift> giftList) {
     for (Gift gift : giftList) {
@@ -115,8 +132,11 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param santa
-   * @param anChange
+   * Actualizeaza informatiile despre Santa in functie de informatiile stocate in clasa
+   * AnnualChange.
+   *
+   * @param santa informatiile despre Santa.
+   * @param anChange schimbarea anuala.
    */
   public static void updateOldSanta(final Santa santa, final AnnualChange anChange) {
     santa.setSantaBudget(anChange.getNewSantaBudget());
@@ -129,8 +149,10 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param childrenList
-   * @param databaseChild
+   * Metoda plaseaza in childrenList noile instante de Child create in functie de varsta.
+   *
+   * @param childrenList lista de copii
+   * @param databaseChild lista de copii din baza de date
    */
   public static void createChildrenByAge(
       final ArrayList<Child> childrenList, final ArrayList<Child> databaseChild) {
@@ -145,8 +167,10 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param avgScoreList
-   * @param childList
+   * Metoda care calculeaza si plaseaza in avgScoreList scorurile average ale tuturor copiilor.
+   *
+   * @param avgScoreList lista cu scoruri average
+   * @param childList lista cu copii
    */
   public static void calculateAllAvgScores(
       final ArrayList<Double> avgScoreList, final ArrayList<Child> childList) {
@@ -157,8 +181,10 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param childList
-   * @param budgetUnit
+   * Calculeaza pentru fiecare copil din childList bugetul asignat, in functie de budget unit
+   *
+   * @param childList lista cu copii
+   * @param budgetUnit budget unit
    */
   public static void calculateAllChildAssignedBudget(
       final ArrayList<Child> childList, final Double budgetUnit) {
@@ -168,8 +194,11 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param mainDB
-   * @param output
+   * Trimite la output lista de copiii DUPA ce au fost efectuate prelucrarile cerute. (Dupa ce au
+   * primit cadourile)
+   *
+   * @param mainDB baza de date principala
+   * @param output outputul in care vom stoca rezultatele
    */
   public static void sendToOutput(final MainDB mainDB, final Output output) {
     AnnualOutput anOutput = new AnnualOutput();
@@ -184,10 +213,12 @@ public final class UtilsProcess {
   }
 
   /**
-   * @param mainDB
-   * @param initialSantaBudget
+   * Metoda care implementeaza algoritmul de trimitere a cadourilor.
+   *
+   * @param mainDB baza de date principala
+   * @param santaBudget bugetul al lui Santa
    */
-  public static void sendGifts(final MainDB mainDB, Double initialSantaBudget) {
+  public static void sendGifts(final MainDB mainDB, Double santaBudget) {
     HashMap<String, ArrayList<Gift>> santaGiftMap = mainDB.getSanta().giftListToMap();
     ArrayList<Gift> arr;
 
@@ -199,23 +230,24 @@ public final class UtilsProcess {
 
           if (santaGiftMap.containsKey(prefs)) {
 
-            arr = santaGiftMap.get(prefs);
+            arr = santaGiftMap.get(prefs); // preia lista de cadouri dintr-o anumita categorie
 
             if (!arr.isEmpty()) {
 
               arr.sort((Comparator.comparing(Gift::getPrice)));
 
-              Gift minGift = arr.get(0);
+              Gift minGift = arr.get(0); // cadoul cu pretul cel mai mic pentru cazul in care exista
+              // mai multe cadouri din aceeasi categorie
 
               int compAssignedBudget = Double.compare(minGift.getPrice(), childAssignedBudget);
-              int compInitialSantaBudget = Double.compare(minGift.getPrice(), initialSantaBudget);
+              int compsantaBudget = Double.compare(minGift.getPrice(), santaBudget);
 
               if ((compAssignedBudget < 0 || compAssignedBudget == 0)
-                  && (compInitialSantaBudget < 0 || compInitialSantaBudget == 0)) {
+                  && (compsantaBudget < 0 || compsantaBudget == 0)) {
 
-                ch.getReceivedGifts().add(minGift);
+                ch.getReceivedGifts().add(minGift); // primeste cadoul
                 childAssignedBudget -= minGift.getPrice();
-                initialSantaBudget -= minGift.getPrice();
+                santaBudget -= minGift.getPrice();
               }
             }
           }

@@ -84,7 +84,6 @@ public final class InputLoader {
                     new Gift(
                         ((String) ((JSONObject) jsonGift).get(Constants.PRODUCT_NAME)),
                         Double.valueOf((Long) ((JSONObject) jsonGift).get(Constants.PRICE)),
-                        // Double.valueOf((Long) jsonObject.get(Constants.PRICE)),
                         ((String) ((JSONObject) jsonGift).get(Constants.CATEGORY))));
           } catch (NullPointerException ignored) {
             System.out.println("NU EXISTA gifts");
@@ -98,7 +97,6 @@ public final class InputLoader {
       if (jsonAnnualChanges != null) {
         for (Object jsonAnnual : jsonAnnualChanges) {
 
-          // Double newBudget = Double.valueOf((Long) jsonObject.get(Constants.NEW_SANTA_BUDGET));
           Double newBudget =
               Double.valueOf((Long) ((JSONObject) jsonAnnual).get(Constants.NEW_SANTA_BUDGET));
           JSONArray annGifts = (JSONArray) ((JSONObject) jsonAnnual).get(Constants.NEW_GIFTS);

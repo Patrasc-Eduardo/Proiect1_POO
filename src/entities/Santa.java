@@ -17,8 +17,9 @@ public final class Santa {
   }
 
   /**
-   * @param allChildAvg
-   * @return
+   * Calculeaza Budget Unit in functie de lista cu scorurile average ale tuturor copiilor
+   * @param allChildAvg lista cu scorurile average ale tuturor copiilor
+   * @return Budget Unit
    */
   public Double calculateBudgetUnit(final ArrayList<Double> allChildAvg) {
 
@@ -40,7 +41,9 @@ public final class Santa {
   }
 
   /**
-   * @return
+   * Metoda care transforma lista de cadouri ale lui Santa intr-un map ce are drept cheie ->
+   * categoria cadoului si drept valoare -> lista de cadouri din acea categorie
+   * @return HashMap
    */
   public HashMap<String, ArrayList<Gift>> giftListToMap() {
     HashMap<String, ArrayList<Gift>> giftMap = new HashMap<>();

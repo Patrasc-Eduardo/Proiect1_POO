@@ -13,9 +13,10 @@ import java.util.ArrayList;
 
 public final class ProcessInput {
   /**
-   * @param mainDB
-   * @param input
-   * @param output
+   * Prelucreaza datele pentru runda 0.
+   * @param mainDB baza de date cu care lucram
+   * @param input inputul de unde luam informatiile si le stocam in baza de date
+   * @param output outputul in care stocam rezultatele
    */
   public void processRoundZero(final MainDB mainDB, final ActionData input, final Output output) {
 
@@ -45,9 +46,10 @@ public final class ProcessInput {
   }
 
   /**
-   * @param mainDB
-   * @param input
-   * @param output
+   * Prelucreaza datele pentru restul rundelor
+   * @param mainDB baza de date cu care lucram
+   * @param input inputul de unde luam informatiile si le stocam in baza de date
+   * @param output outputul in care stocam rezultatele
    */
   public void processAllRounds(final MainDB mainDB, final ActionData input, final Output output) {
     for (int i = 0; i < input.getNumberOfYears(); i++) {
@@ -85,9 +87,10 @@ public final class ProcessInput {
   }
 
   /**
-   * @param input
-   * @param filePath2
-   * @throws IOException
+   * Entry point-ul programului.
+   * @param input inputul de unde luam informatiile
+   * @param filePath2 fisierul de output
+   * @throws IOException exceptie generata de scrierea in JSON
    */
   public void init(final ActionData input, final String filePath2) throws IOException {
 

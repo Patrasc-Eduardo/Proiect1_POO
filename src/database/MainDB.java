@@ -11,7 +11,7 @@ public final class MainDB {
 
   private MainDB() { }
 
-  /** @return */
+  /** @return instanta bazei de date de tip Singleton. */
   public static MainDB getInstance() {
     if (instance == null) {
       instance = new MainDB();

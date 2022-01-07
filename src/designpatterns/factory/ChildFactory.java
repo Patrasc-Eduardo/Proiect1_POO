@@ -22,19 +22,21 @@ public final class ChildFactory {
   }
 
   /**
-   * @param x
-   * @param lower
-   * @param upper
-   * @return
+   * Metoda care verifica daca varsta copilului se afla intr-un anumit interval.
+   * @param age varsta
+   * @param lower marginea inferioara
+   * @param upper marginea superioara
+   * @return rezultatul comparatiei de tip true sau false
    */
-  public boolean isBetween(final int x, final int lower, final int upper) {
-    return lower <= x && x <= upper;
+  public boolean isBetween(final int age, final int lower, final int upper) {
+    return lower <= age && age <= upper;
   }
 
   /**
-   * @param age
-   * @param ch
-   * @return
+   * Clasa care creaza instante de Child in functie de varsta copilului.
+   * @param age varsta copilului
+   * @param ch  instanta de Child originala de unde vom copia datele printr-un copy constructor.
+   * @return instanta de Child
    */
   public Child createChild(final int age, final Child ch) {
 

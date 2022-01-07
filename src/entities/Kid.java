@@ -15,6 +15,9 @@ public final class Kid extends Child {
         this.setReceivedGifts(ch.getReceivedGifts());
     }
 
+    /**
+     * Calculeaza average score ca o medie aritmetica.
+     */
     @Override
     public void calculateAvgScore() {
         double nr = 0.0;

@@ -36,7 +36,8 @@ public final class Main {
     checker.deleteFiles(outputDirectory.listFiles());
 
     int i = 1;
-
+    // Pentru a putea parcurge testele in ordinea lor, nu in ordine alfabetica
+    // cum sunt preluate de sistem.
     for (File ignored : Objects.requireNonNull(directory.listFiles())) {
 
       String filepath = Constants.OUTPUT_PATH + i + Constants.FILE_EXTENSION;
